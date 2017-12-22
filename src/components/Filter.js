@@ -7,7 +7,7 @@ import {
     FlatList, TouchableOpacity
 } from 'react-native';
 import {connect} from 'react-redux';
-
+import {showAll, showMemorized, showNeedPractice} from '../redux/actionCreators';
  class Filter extends Component {
     getTextStyle(statusName){
         const {MyFilterStatus} = this.props;
@@ -23,15 +23,25 @@ import {connect} from 'react-redux';
         return (
 
             <View style={styles.container}>
-                <TouchableOpacity onPress={ () => this.setFilterStatus('FILTER_SHOW_ALL')}>
+                <TouchableOpacity
+                    // onPress={ () => this.setFilterStatus('FILTER_SHOW_ALL')
+                    onPress={ () => this.props.showAll()
+                    }>
                     <Text style={this.getTextStyle('SHOW_ALL')}>Show All</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={ () => this.setFilterStatus('FILTER_MEMORIZED')}>
+                <TouchableOpacity
+                    // onPress={ () => this.setFilterStatus('FILTER_MEMORIZED')}
+                    onPress={ () => this.props.showMemorized()}
+
+                >
                     <Text style={this.getTextStyle('MEMORIZED')}>Memorized</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={ () => this.setFilterStatus('FILTER_NEED_PRACTICE')}>
+                <TouchableOpacity
+                    // onPress={ () => this.setFilterStatus('FILTER_NEED_PRACTICE')}
+                    onPress={ () => this.props.showNeedPractice()}
+                >
                     <Text style={this.getTextStyle('NEED_PRACTICE')}>Need practice</Text>
                 </TouchableOpacity>
             </View>
@@ -44,7 +54,7 @@ function mapStateToProps(state){
       MyFilterStatus : state.filterStatus
     };
 }
-export default connect(mapStateToProps)(Filter);
+export default connect(mapStateToProps, {showAll, showMemorized, showNeedPractice})(Filter);
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'green',
