@@ -26,6 +26,7 @@ import {toggleIsAdding} from '../redux/actionCreators';
         );
     }
 }
+
 //connect (mapStateToProps,mapActionToProps)
 // export default connect()(Header);
 export default connect(null,{ myToggleIsAdding: toggleIsAdding})(Header);

@@ -1,5 +1,6 @@
 import { AppRegistry } from 'react-native';
 import React, { Component } from 'react';
+// import App from './src/App';
 import App from './src/App';
 
 export default class reduxdemo2 extends Component<{}> {
