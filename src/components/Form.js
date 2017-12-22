@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {toggleIsAdding,addWord} from '../redux/actionCreators';
 import {
     Platform,
     StyleSheet,
@@ -18,15 +19,14 @@ import {connect} from 'react-redux';
     }
 
     onAdd() {
+        // this.props.dispatch({
+        //     type:'ADD_WORD',
+        //     en:en,
+        //     vn:vn,
+        // });
         const {en,vn} = this.state;
-        this.props.dispatch({
-            type:'ADD_WORD',
-            en:en,
-            vn:vn,
-        });
-        this.props.dispatch({
-            type:'TOGGLE_IS_ADDING'
-        })
+        this.props.addWord(en,vn);
+        this.props.toggleIsAdding();
     }
 
     render() {
@@ -56,7 +56,7 @@ import {connect} from 'react-redux';
         );
     }
 }
-export default connect () (Form);
+export default connect (null, {addWord, toggleIsAdding}) (Form);
 const styles = StyleSheet.create({
     textInput: {
         height: 40,
