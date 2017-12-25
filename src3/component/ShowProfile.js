@@ -17,8 +17,8 @@ import {
     Thumbnail
 } from "native-base";
 import {TouchableOpacity, StyleSheet} from 'react-native';
-
-export default class ShowProfile extends React.Component {
+import {connect} from 'react-redux';
+class ShowProfile extends React.Component {
     render() {
         return (
             <View>
@@ -29,7 +29,7 @@ export default class ShowProfile extends React.Component {
                 <View>
                     <List>
                         <ListItem style={styles.listInfo}>
-                            <Text> Nguyen Duc Tho</Text>
+                            <Text> {this.props.fullname}</Text>
                         </ListItem>
                         <ListItem style={styles.listInfo}>
                             <Text> Tài khoản Học sinh</Text>
@@ -75,6 +75,17 @@ export default class ShowProfile extends React.Component {
     }
 }
 
+function mapStateProps(state) {
+        return{
+            fullname: state.fullname,
+            grade: state.grade,
+            address: state.address,
+            school: state.school,
+            district: state.district,
+            province: state.province
+        }
+}
+export  default connect(mapStateProps)(ShowProfile);
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
